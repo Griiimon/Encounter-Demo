@@ -1,0 +1,57 @@
+[gd_resource type="Resource" script_class="Encounter" load_steps=15 format=3 uid="uid://f4w0u27cyto3"]
+
+[ext_resource type="Script" path="res://scripts/encounters/Encounter.gd" id="1_7my1y"]
+[ext_resource type="Script" path="res://scripts/encounter outcomes/Encounter Outcome Empty.gd" id="1_dj45o"]
+[ext_resource type="Script" path="res://scripts/encounter outcomes/Encounter Outcome Recursive.gd" id="2_6dc67"]
+[ext_resource type="Script" path="res://scripts/encounter outcomes/Encounter Outcome New Encounter.gd" id="2_qgog3"]
+[ext_resource type="Script" path="res://scripts/encounter outcomes/Encounter Outcome Random Even.gd" id="3_r28q8"]
+[ext_resource type="Resource" uid="uid://biuc1goj08k3b" path="res://resources/enemy parties/Maze Exit Party.tres" id="3_wkpho"]
+[ext_resource type="Script" path="res://scripts/encounter outcomes/Encounter Outcome Combat.gd" id="4_5p3ju"]
+
+[sub_resource type="Resource" id="Resource_jrpof"]
+script = ExtResource("1_dj45o")
+button_text = "Go back"
+custom_result_text = "You leave the maze"
+
+[sub_resource type="Resource" id="Resource_qgffd"]
+script = ExtResource("1_dj45o")
+button_text = ""
+custom_result_text = "You are back at the entrance"
+
+[sub_resource type="Resource" id="Resource_elfiq"]
+script = ExtResource("2_6dc67")
+button_text = ""
+custom_result_text = "You went deeper into the maze"
+
+[sub_resource type="Resource" id="Resource_2d344"]
+script = ExtResource("4_5p3ju")
+chance_member_involved = 100.0
+button_text = ""
+custom_result_text = "You ran into some enemies guarding the exit"
+
+[sub_resource type="Resource" id="Resource_d7h2o"]
+script = ExtResource("1_7my1y")
+internal_name = "maze exit"
+description = ""
+outcomes = Array[Resource("res://scripts/encounter outcomes/Base Encounter Outcome.gd")]([SubResource("Resource_2d344")])
+enemy_party = ExtResource("3_wkpho")
+trigger_automatic_outcome = true
+
+[sub_resource type="Resource" id="Resource_6kg2b"]
+script = ExtResource("2_qgog3")
+encounter = SubResource("Resource_d7h2o")
+button_text = ""
+custom_result_text = ""
+
+[sub_resource type="Resource" id="Resource_kcksh"]
+script = ExtResource("3_r28q8")
+options = Array[Resource("res://scripts/encounter outcomes/Base Encounter Outcome.gd")]([SubResource("Resource_qgffd"), SubResource("Resource_elfiq"), SubResource("Resource_6kg2b")])
+button_text = "Go through"
+custom_result_text = "You are trying to find your way through"
+
+[resource]
+script = ExtResource("1_7my1y")
+internal_name = "maze"
+description = "You are in a maze"
+outcomes = Array[Resource("res://scripts/encounter outcomes/Base Encounter Outcome.gd")]([SubResource("Resource_jrpof"), SubResource("Resource_kcksh")])
+trigger_automatic_outcome = false

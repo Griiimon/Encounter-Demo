@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EncounterOutcomeCombat" load_steps=2 format=3 uid="uid://bq5ku232ms2q0"]
+
+[ext_resource type="Script" path="res://scripts/encounter outcomes/Encounter Outcome Combat.gd" id="1_wuqp8"]
+
+[resource]
+script = ExtResource("1_wuqp8")
+chance_member_involved = 70.0
+button_text = "Fight"
+custom_result_text = "You decide to fight"

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EncounterOutcomePickupItem" load_steps=2 format=3 uid="uid://c8ixbts0bmw30"]
+
+[ext_resource type="Script" path="res://scripts/encounter outcomes/Encounter Outcome Pickup Item.gd" id="1_0qv75"]
+
+[resource]
+script = ExtResource("1_0qv75")
+button_text = "Pickup Item"
+custom_result_text = ""

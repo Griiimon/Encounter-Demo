@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://b8gnrb02ec0o0"]
+
+[ext_resource type="Script" path="res://scripts/Main.gd" id="1_vy7ck"]
+[ext_resource type="Resource" uid="uid://doi5yw6mavudq" path="res://resources/encounters/Surprise Attack.tres" id="2_lx1nw"]
+[ext_resource type="Resource" uid="uid://cd2tgn5gwrrry" path="res://resources/encounters/Find Item.tres" id="4_slph6"]
+[ext_resource type="Resource" uid="uid://f4w0u27cyto3" path="res://resources/encounters/Maze.tres" id="7_ig3gh"]
+
+[node name="Main" type="CanvasLayer"]
+script = ExtResource("1_vy7ck")
+encounters = Array[Resource("res://scripts/encounters/Encounter.gd")]([ExtResource("7_ig3gh"), ExtResource("2_lx1nw"), ExtResource("4_slph6")])
+
+[node name="Main Panel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Main Panel"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Main Panel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Random Encounter Button" type="Button" parent="Main Panel/CenterContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Random Encounter"
+
+[node name="Encounter List" type="VBoxContainer" parent="Main Panel/CenterContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Encounter Panel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="Encounter Panel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Encounter Panel/CenterContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Encounter Description" type="Label" parent="Encounter Panel/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="Encounter HBox" type="HBoxContainer" parent="Encounter Panel/CenterContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[connection signal="pressed" from="Main Panel/CenterContainer/HBoxContainer/Random Encounter Button" to="." method="_on_random_encounter_button_pressed"]

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="EncounterItem" load_steps=6 format=3 uid="uid://cd2tgn5gwrrry"]
+
+[ext_resource type="Resource" uid="uid://dwbkjm5wjdk12" path="res://resources/outcomes/Leave Outcome.tres" id="1_7l8u4"]
+[ext_resource type="Script" path="res://scripts/Sword.gd" id="1_vgvl0"]
+[ext_resource type="Resource" uid="uid://c8ixbts0bmw30" path="res://resources/outcomes/Pickup Item Outcome.tres" id="2_ks36k"]
+[ext_resource type="Script" path="res://scripts/encounters/Encounter Item.gd" id="3_r14hw"]
+
+[sub_resource type="Resource" id="Resource_3krr0"]
+script = ExtResource("1_vgvl0")
+damage = 25
+
+[resource]
+script = ExtResource("3_r14hw")
+item = SubResource("Resource_3krr0")
+internal_name = "find item"
+description = ""
+outcomes = Array[Resource("res://scripts/encounter outcomes/Base Encounter Outcome.gd")]([ExtResource("1_7l8u4"), ExtResource("2_ks36k")])
+trigger_automatic_outcome = false

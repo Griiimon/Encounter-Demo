@@ -1,0 +1,62 @@
+[gd_resource type="Resource" script_class="Encounter" load_steps=20 format=3 uid="uid://doi5yw6mavudq"]
+
+[ext_resource type="Script" path="res://scripts/Character.gd" id="1_a7rhi"]
+[ext_resource type="Script" path="res://scripts/encounters/Encounter.gd" id="1_br7js"]
+[ext_resource type="Resource" uid="uid://dfxjn7hpwub0c" path="res://resources/outcomes/Flee Outcome.tres" id="1_ry2wm"]
+[ext_resource type="Resource" uid="uid://bq5ku232ms2q0" path="res://resources/outcomes/Fight Outcome.tres" id="2_2xxs6"]
+[ext_resource type="Script" path="res://scripts/Party.gd" id="2_m8s5o"]
+[ext_resource type="Script" path="res://scripts/logic/Condition Component Dynamic Value.gd" id="5_3ogkm"]
+[ext_resource type="Script" path="res://scripts/encounter outcomes/Encounter Outcome Empty.gd" id="5_348is"]
+[ext_resource type="Script" path="res://scripts/logic/Condition Component Text.gd" id="6_20ldu"]
+[ext_resource type="Script" path="res://scripts/encounter outcomes/advanced/Encounter Outcome Conditional.gd" id="6_27bpr"]
+[ext_resource type="Script" path="res://scripts/logic/Condition.gd" id="7_76j70"]
+
+[sub_resource type="Resource" id="Resource_kfmy7"]
+script = ExtResource("1_a7rhi")
+name = "Bandit 1"
+
+[sub_resource type="Resource" id="Resource_7hxbr"]
+script = ExtResource("1_a7rhi")
+name = "Bandit 2"
+
+[sub_resource type="Resource" id="Resource_ssas7"]
+script = ExtResource("1_a7rhi")
+name = "Bandit 3"
+
+[sub_resource type="Resource" id="Resource_5spei"]
+script = ExtResource("2_m8s5o")
+characters = Array[ExtResource("1_a7rhi")]([SubResource("Resource_kfmy7"), SubResource("Resource_7hxbr"), SubResource("Resource_ssas7")])
+gold = 0
+
+[sub_resource type="Resource" id="Resource_wqway"]
+script = ExtResource("5_3ogkm")
+source = 0
+property = "gold"
+
+[sub_resource type="Resource" id="Resource_1jei4"]
+script = ExtResource("6_20ldu")
+text = "==0"
+
+[sub_resource type="Resource" id="Resource_i80gm"]
+script = ExtResource("7_76j70")
+components = Array[Resource("res://scripts/logic/Condition Component.gd")]([SubResource("Resource_wqway"), SubResource("Resource_1jei4")])
+
+[sub_resource type="Resource" id="Resource_m6g16"]
+script = ExtResource("5_348is")
+button_text = ""
+custom_result_text = "The bandits leave you alone"
+
+[sub_resource type="Resource" id="Resource_of8uj"]
+script = ExtResource("6_27bpr")
+outcome = SubResource("Resource_m6g16")
+condition = SubResource("Resource_i80gm")
+button_text = "We dont have anything"
+custom_result_text = ""
+
+[resource]
+script = ExtResource("1_br7js")
+internal_name = "suprise attack"
+description = "You are being attacked by bandits"
+outcomes = Array[Resource("res://scripts/encounter outcomes/Base Encounter Outcome.gd")]([ExtResource("1_ry2wm"), ExtResource("2_2xxs6"), SubResource("Resource_of8uj")])
+enemy_party = SubResource("Resource_5spei")
+trigger_automatic_outcome = false

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EncounterOutcomeEmpty" load_steps=2 format=3 uid="uid://dfxjn7hpwub0c"]
+
+[ext_resource type="Script" path="res://scripts/encounter outcomes/Encounter Outcome Empty.gd" id="1_1h3cg"]
+
+[resource]
+script = ExtResource("1_1h3cg")
+button_text = "Flee"
+custom_result_text = "Your troops are fleeing"
